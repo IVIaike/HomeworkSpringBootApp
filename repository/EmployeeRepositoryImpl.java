@@ -44,7 +44,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
         }
         return maxSalary;
     }
-
+//Что-то тут не так работает
     @Override
     public int getEmployeeSalaryHighAwg() {
         int highAwgSalary = 0;
