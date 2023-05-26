@@ -4,7 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.trainingwork.homeworkspringbootapp.pojo.Employee;
 import ru.trainingwork.homeworkspringbootapp.service.EmployeeService;
+
+import java.util.Collection;
 
 @RestController
 @RequestMapping("/employee/salary")
@@ -19,15 +22,15 @@ public class EmployeeController {
     }
 
     @GetMapping("/min")
-    public int getEmployeeSalaryMin () {
+    public Collection<Employee> getEmployeeSalaryMin () {
         return employeeService.getEmployeeSalaryMin();
     }
 
     @GetMapping("/max")
-    public int getEmployeeSalaryMax () {return employeeService.getEmployeeSalaryMax();}
+    public Collection<Employee> getEmployeeSalaryMax () {return employeeService.getEmployeeSalaryMax();}
 
     @GetMapping("/high-salary")
-    public int getEmployeeSalaryHighAwg () {return employeeService.getEmployeeSalaryHighAwg();}
+    public Collection<Employee> getEmployeeSalaryHighAwg () {return employeeService.getEmployeeSalaryHighAwg();}
 
 
 
