@@ -3,9 +3,9 @@ package ru.trainingwork.homeworkspringbootapp.repository;
 import org.springframework.stereotype.Repository;
 import ru.trainingwork.homeworkspringbootapp.pojo.Employee;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 @Repository
 public class EmployeeRepositoryImpl implements EmployeeRepository{
@@ -26,38 +26,50 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
     }
 
     @Override
-    public int getEmployeeSalaryMin() {
+    public Collection<Employee> getEmployeeSalaryMin() {
         int minSalary = Integer.MAX_VALUE;
         for (Employee e: employeeList) {
             minSalary = Math.min(minSalary, e.getSalary());
         }
-        return minSalary;
+        Collection<Employee> result = new ArrayList<>();
+        for (Employee e: employeeList) {
+            if(minSalary == e.getSalary()) {
+                result.add(e);
+            }
+        }
+        return result;
     }
 
     @Override
-    public int getEmployeeSalaryMax() {
+    public Collection<Employee> getEmployeeSalaryMax() {
         int maxSalary = 0;
         for (Employee e: employeeList) {
             if (maxSalary < e.getSalary()) {
                 maxSalary = e.getSalary();
             }
         }
-        return maxSalary;
+        Collection<Employee> result = new ArrayList<>();
+        for (Employee e: employeeList) {
+            if(maxSalary == e.getSalary()) {
+                result.add(e);
+            }
+        }
+        return result;
     }
-//Что-то тут не так работает
     @Override
-    public int getEmployeeSalaryHighAwg() {
+    public Collection<Employee> getEmployeeSalaryHighAwg() {
         int highAwgSalary = 0;
         int sumSalary = 0;
         for (Employee e: employeeList) {
             sumSalary = sumSalary + e.getSalary();
         }
         int awgSalary = sumSalary / employeeList.size();
+        Collection<Employee> result = new ArrayList<>();
         for (Employee e: employeeList) {
-            if (awgSalary < e.getSalary()){
-                highAwgSalary = e.getSalary();
+            if(awgSalary < e.getSalary()) {
+                result.add(e);
             }
         }
-        return highAwgSalary;
+        return result;
     }
 }

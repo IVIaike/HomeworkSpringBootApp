@@ -1,12 +1,16 @@
 package ru.trainingwork.homeworkspringbootapp.service;
 
+import ru.trainingwork.homeworkspringbootapp.pojo.Employee;
+
+import java.util.Collection;
+
 public interface EmployeeService {
 
     int getEmployeeSalarySum();
 
-    int getEmployeeSalaryMin();
+    Collection<Employee> getEmployeeSalaryMin();
 
-    int getEmployeeSalaryMax();
+    Collection<Employee> getEmployeeSalaryMax();
 
-    int getEmployeeSalaryHighAwg();
+    Collection<Employee> getEmployeeSalaryHighAwg();
 }
