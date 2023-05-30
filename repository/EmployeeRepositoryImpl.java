@@ -58,7 +58,6 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
     }
     @Override
     public Collection<Employee> getEmployeeSalaryHighAwg() {
-        int highAwgSalary = 0;
         int sumSalary = 0;
         for (Employee e: employeeList) {
             sumSalary = sumSalary + e.getSalary();
