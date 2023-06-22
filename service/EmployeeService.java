@@ -13,4 +13,14 @@ public interface EmployeeService {
     Collection<Employee> getEmployeeSalaryMax();
 
     Collection<Employee> getEmployeeSalaryHighAwg();
+    
+    void editEmployeeById(Employee employee, String identificator);
+
+    void deleteEmployeeById(String identificator);
+
+    void addNewEmployee(Employee employee);
+
+    Employee getEmployeeById(String identificator);
+
+    Collection<Employee> getEmployeeWithSalaryHigherThen(Integer compSalary);
 }
