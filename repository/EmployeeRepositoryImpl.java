@@ -1,20 +1,28 @@
 package ru.trainingwork.homeworkspringbootapp.repository;
 
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Repository;
+import org.webjars.NotFoundException;
 import ru.trainingwork.homeworkspringbootapp.pojo.Employee;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.BinaryOperator;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Repository
 public class EmployeeRepositoryImpl implements EmployeeRepository{
 
-    private final List<Employee> employeeList = List.of(
-            new Employee("Leo", 90_000),
-            new Employee("Damon", 100_000),
-            new Employee("Rousi", 80_000),
-            new Employee("Dominik", 120_000));
+    private final List<Employee> employeeList = new ArrayList<>(List.of(
+            new Employee(1, "Leo", 90_000),
+            new Employee(2, "Damon", 100_000),
+            new Employee(3, "Rousi", 80_000),
+            new Employee(4, "Dominik", 120_000)));
 
     @Override
     public int getEmployeeSalarySum() {
@@ -71,4 +79,54 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
         }
         return result;
     }
+
+    @Override
+    public void deleteEmployee(int parseInt) {
+//        employeeList.stream()
+//                .filter(employee -> employee.getSalary() > employeeList.stream()
+//                        .map(Employee::getSalary)
+//                        .reduce(Integer::sum)
+//                        .orElse(0) / employeeList.size())
+//                .toList();
+        employeeList.remove(getEmployeeById(parseInt));
+    }
+
+    @SneakyThrows
+    @Override
+    public void editEmployeeById(Employee employee, Integer parseInt) {
+            for (int i = 0; i < employeeList.size(); i++) {
+                if(employeeList.get(i).getId().equals(parseInt)){
+                    employeeList.get(i).setId(employee.getId());
+                    employeeList.get(i).setName(employee.getName());
+                    employeeList.get(i).setSalary(employee.getSalary());
+                    break;
+                }
+            }
+    }
+
+    @Override
+    public void addNewEmployee(Employee employee) {
+        employeeList.add(employee);
+    }
+
+    @SneakyThrows
+    @Override
+    public Employee getEmployeeById(int parseInt) {
+
+//        return employeeList.stream().filter(x -> x.getId() == parseInt).findFirst().orElseThrow(IOException::new);
+
+        Predicate<Employee>currentEmployee = employee -> employee.getId() == parseInt;
+        return employeeList
+                .stream()
+                .filter(employee -> employee.getId() == parseInt)
+                .toList()
+                .get(0);
+    }
+
+    @Override
+    public Collection<Employee> getEmployeeWithSalaryHigherThen(Integer compSalary) {
+        return employeeList.stream().filter(employee -> employee.getSalary() > compSalary).toList();
+
+    }
+
 }

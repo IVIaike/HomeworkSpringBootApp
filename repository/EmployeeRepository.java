@@ -13,4 +13,14 @@ public interface EmployeeRepository {
     Collection<Employee> getEmployeeSalaryMax();
 
     Collection<Employee> getEmployeeSalaryHighAwg();
+
+    void deleteEmployee(int parseInt);
+
+    void editEmployeeById(Employee employee, Integer parseInt);
+
+    void addNewEmployee(Employee employee);
+
+    Employee getEmployeeById(int parseInt);
+
+    Collection<Employee> getEmployeeWithSalaryHigherThen(Integer compSalary);
 }
