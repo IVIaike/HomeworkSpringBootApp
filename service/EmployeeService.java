@@ -1,26 +1,47 @@
 package ru.trainingwork.homeworkspringbootapp.service;
 
-import ru.trainingwork.homeworkspringbootapp.pojo.Employee;
+import org.springframework.data.repository.query.Param;
+import ru.trainingwork.homeworkspringbootapp.dto.EmployeeDTO;
+import ru.trainingwork.homeworkspringbootapp.dto.EmployeeFullInfo;
+import ru.trainingwork.homeworkspringbootapp.model.Employee;
+import ru.trainingwork.homeworkspringbootapp.model.Position;
 
-import java.util.Collection;
+import java.util.List;
 
 public interface EmployeeService {
+    List<EmployeeDTO> findByName(@Param("name") String name);
 
-    int getEmployeeSalarySum();
+    List<EmployeeDTO> findEmployeeWithHighestSalary();
 
-    Collection<Employee> getEmployeeSalaryMin();
+    List<EmployeeFullInfo> findAllEmployeeFullInfo();
 
-    Collection<Employee> getEmployeeSalaryMax();
+    List<EmployeeDTO> findByPosition(String position);
 
-    Collection<Employee> getEmployeeSalaryHighAwg();
-    
-    void editEmployeeById(Employee employee, String identificator);
+    List<Employee> getEmployeeWithPaging(int pageIndex);
 
-    void deleteEmployeeById(String identificator);
-
-    void addNewEmployee(Employee employee);
-
-    Employee getEmployeeById(String identificator);
-
-    Collection<Employee> getEmployeeWithSalaryHigherThen(Integer compSalary);
+//    void addEmployee(Employee employee);
+//
+//    Employee getEmployeeById(int id);
+//
+//    void deleteEmployeeById(int id);
+//
+//    List<EmployeeDTO> getAllEmployees();
+//
+//    int getEmployeeSalarySum();
+//
+//    Collection<Employee> getEmployeeSalaryMin();
+//
+//    Collection<Employee> getEmployeeSalaryMax();
+//
+//    Collection<Employee> getEmployeeSalaryHighAwg();
+//
+//    void editEmployeeById(Employee employee, String identificator);
+//
+//    void deleteEmployeeById(String identificator);
+//
+//    void addNewEmployee(Employee employee);
+//
+//    Employee getEmployeeById(String identificator);
+//
+//    Collection<Employee> getEmployeeWithSalaryHigherThen(Integer compSalary);
 }
